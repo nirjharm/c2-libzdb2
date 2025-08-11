@@ -79,7 +79,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
 make
 ```
 
-The other is to build LibZDB against the ZFS we just installed.
+(Preferred) The other is to build LibZDB against the ZFS we just installed.
 
 ```bash
 git clone -b sdc22 https://github.com/lanl-future-campaign/c2-libzdb2.git
@@ -122,6 +122,13 @@ config:
 
 errors: No known data errors
 ```
+
+Next, ensure the cachefile is force-created.
+
+```bash
+sudo /opt/zfs/sbin/zpool set cachefile=/etc/zfs/zpool.cache mypool
+``` 
+
 
 Next, insert a 128K file into the newly created zpool.
 

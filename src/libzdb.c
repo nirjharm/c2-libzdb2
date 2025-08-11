@@ -53,7 +53,7 @@
 #include <sys/zfs_sa.h>
 #include <sys/zfs_znode.h>
 #include <sys/zio.h>
-
+#include <sys/spa.h>
 #include <dirent.h>
 
 /* a single block of data */
@@ -153,7 +153,7 @@ snprintf_blkptr_compact(
 		sprintf(blkbuf, "EMBEDDED et=%u %llxL/%llxP B=%llu",
 		    (int) BPE_GET_ETYPE(bp), (u_longlong_t) BPE_GET_LSIZE(bp),
 		    (u_longlong_t) BPE_GET_PSIZE(bp),
-		    (u_longlong_t) bp->blk_birth);
+		    (u_longlong_t) BP_GET_BIRTH(bp));
 		return;
 	}
 
@@ -236,7 +236,7 @@ visit_indirect(spa_t *spa, const dnode_phys_t *dnp, blkptr_t *bp,
 {
 	int err = 0;
 
-	if (bp->blk_birth == 0)
+	if (BP_GET_BIRTH(bp) == 0)
 		return (0);
 
 	print_indirect(bp, zb, dnp, list);
