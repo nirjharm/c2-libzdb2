@@ -126,6 +126,7 @@ errors: No known data errors
 Next, ensure the cachefile is force-created.
 
 ```bash
+mkdir /etc/zfs
 sudo /opt/zfs/sbin/zpool set cachefile=/etc/zfs/zpool.cache mypool
 ``` 
 
